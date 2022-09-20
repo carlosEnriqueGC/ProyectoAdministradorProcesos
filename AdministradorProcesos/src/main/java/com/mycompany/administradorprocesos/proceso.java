@@ -466,6 +466,19 @@ public void Cargar(int i){
 
 public void Ingresar(){ 
  //DIEGO
+ DefaultTableModel modelo=(DefaultTableModel) jTIngreso.getModel();
+
+    Contador ++;
+    Object[] miTabla = new Object[5];
+    miTabla[0]= Contador;
+    miTabla[1]= jTFCapturaRafaga.getText();
+    miTabla[2]= jTFCapturaQuantum.getText();
+    miTabla[3]= jTFCapturaRafaga.getText();
+    miTabla[4]= "Listo";
+    modelo.addRow(miTabla);
+    jTIngreso.setModel(modelo);
+    jTFCapturaRafaga.setText(null);
+    jTFCapturaRafaga.grabFocus();
 }
 
 public void Informe(int c){
