@@ -1,20 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+
 package com.mycompany.administradorprocesos;
+
+
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author callo
+ * @author Equipo 3 sistemas operativos
  */
 public class proceso extends javax.swing.JFrame {
 
-    /**
-     * Creates new form proceso
-     */
+    int Contador;//Contador del total de procesos que se van ingresando
+    int NProceso;//Carga el número de procesos ejecutándose
+    int Rafaga=0;//Carga la ráfaga en ejecución
+    int Quantum=0;//Carga el quantum en ejecución ¿Qué es el QUANTUM? Es el tiempo máximo que un proceso puede hacer uso del procesador.
+    int ResiduoRafaga=0;//Carga el residuo en ejecución
+    int TiempoProceso=0;//Carga el tiempo que se dura procesando
+    int ValorBarra;//Carga el progreso de la Barra
+    int CantidadProcesos;//Número de procesos terminados
+    
+
+ 
     public proceso() {
         initComponents();
+        
+        jTIngreso.setBackground(Color.CYAN);
+        jTIngreso.setForeground(Color.blue);
+        jTFinal.setBackground(Color.GREEN);
+        //jTFinal.setBackground(Color.red);
+        jTFCapturaQuantum.grabFocus();
+        
+        
     }
 
     /**
@@ -33,8 +55,8 @@ public class proceso extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTFCapturaQuantum = new javax.swing.JTextField();
         jTFCapturaRafaga = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
+        jBIniciar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTIngreso = new javax.swing.JTable();
@@ -80,9 +102,19 @@ public class proceso extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Agregar");
+        jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("iniciar");
+        jBIniciar.setText("iniciar");
+        jBIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBIniciarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Lista de procesos");
@@ -175,8 +207,8 @@ public class proceso extends javax.swing.JFrame {
                         .addComponent(jTFCapturaRafaga, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jBIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,9 +264,9 @@ public class proceso extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFCapturaQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFCapturaRafaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jBAgregar))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jBIniciar)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -249,7 +281,6 @@ public class proceso extends javax.swing.JFrame {
                     .addComponent(jPBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
@@ -296,6 +327,15 @@ public class proceso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLCantidadTiempo1ActionPerformed
 
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+     
+         //JOSHUA   
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIniciarActionPerformed
+         //JOSHUA   
+    }//GEN-LAST:event_jBIniciarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -331,9 +371,120 @@ public class proceso extends javax.swing.JFrame {
         });
     }
 
+   private class Hilo implements Runnable{ //Objeto de tipo Hilo con extension ejectubale
+    @Override
+    public void run(){
+        int estado=1; //Estado de while que indica si se puede seguir o no
+        int i=0; // contador de while
+        
+        while(estado!=0){
+            while(i<Contador){ //Recorrer las filas
+                Cargar(i);
+                if(ResiduoRafaga!=0 && ResiduoRafaga>Quantum){ //Ejecutando Procesos
+                    for(int c=1; c<=Quantum; c++){
+                        jTIngreso.setValueAt("Procesando",i,4);
+                        ResiduoRafaga--;
+                        Barra(Rafaga,ResiduoRafaga);
+                        Pintar();
+                        jTIngreso.setValueAt(String.valueOf(ResiduoRafaga),i,3);
+                        TiempoProceso++;
+                        Dormir();
+                    }
+                    jTIngreso.setValueAt("Espera",i,4);
+                    if(ResiduoRafaga==0){
+                        jTIngreso.setValueAt("Terminado",i,4);
+                        Pintar();
+                        Informe(i);
+                        Borrar(i);
+                        jPBEstado.setValue(0);
+                    }
+            }else{
+                if(ResiduoRafaga>0 && Quantum!=0){
+                    while(ResiduoRafaga>0){
+                        jTIngreso.setValueAt("Procesando",i,4);
+                        ResiduoRafaga--;
+                        Barra(Rafaga,ResiduoRafaga);
+                        Pintar();
+                        jTIngreso.setValueAt(String.valueOf(ResiduoRafaga),i,3);
+                        TiempoProceso++;
+                        Dormir();
+                    }
+                    jTIngreso.setValueAt("Espera",i,4);
+                    if(ResiduoRafaga==0 && Quantum!=0){
+                        jTIngreso.setValueAt("Terminado",i,4);
+                        Pintar();
+                        Informe(i);
+                        Borrar(i);
+                        jPBEstado.setValue(0);
+                     }
+                    }else{
+                        if(ResiduoRafaga==0 && Quantum!=0){
+                            jTIngreso.setValueAt("Terminado",i,4);
+                            Pintar();
+                            Informe(i);
+                            Borrar(i);
+                            jPBEstado.setValue(0);
+                        }
+                    }
+                }
+                jLNumeroProceso.setText(String.valueOf("")); //Borrar contenido
+                jLPorcentajeProceso.setText(String.valueOf(""));
+                i++;
+            }
+            i=0;
+            jLNumeroProceso.setText(String.valueOf("")); //Borrar contenido
+            jLPorcentajeProceso.setText(String.valueOf(""));
+            
+        }
+            
+    }
+}
+    
+public void Dormir(){
+   
+//DIEGO
+}
+
+public void Cargar(int i){ 
+    
+ //DIEGO
+}
+
+public void Ingresar(){ 
+ //DIEGO
+}
+
+public void Informe(int c){
+
+  //DIEGO
+}
+
+public void Borrar(int c){ 
+    
+     //DIEGO
+}
+
+   public void Barra(int rafaga, int residuo){ //Calcula porcentaje de la barra y su progreso
+       
+      //JOSHUA   
+}
+
+    public void Pintar(){
+        //JOSHUA    
+        
+    }
+
+    public void Iniciar(){ //Inicia la secuencia de procesos
+       
+         //JOSHUA   
+}
+        
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBIniciar;
     private javax.swing.JTextField jLCantidadProcesos;
     private javax.swing.JTextField jLCantidadProcesos1;
     private javax.swing.JTextField jLCantidadTiempo;
