@@ -443,25 +443,71 @@ public class proceso extends javax.swing.JFrame {
 public void Dormir(){
    
 //DIEGO
+try{
+        Thread.sleep(700); //Dormir sistema
+    }catch(InterruptedException ex){
+        Logger.getLogger(Procesar.class.getName()).log(Level.SEVERE,null,ex);
+    }
+
 }
 
 public void Cargar(int i){ 
     
  //DIEGO
+ NProceso=(int)jTIngreso.getValueAt(i,0);
+    Rafaga=parseInt((String)(jTIngreso.getValueAt(i,1)));
+    Quantum=parseInt((String)(jTIngreso.getValueAt(i,2)));
+    ResiduoRafaga=parseInt((String)(jTIngreso.getValueAt(i,3)));
+    if(NProceso>0){
+        jLNumeroProceso.setText(String.valueOf(NProceso));
+    }
+ 
 }
 
 public void Ingresar(){ 
  //DIEGO
+ DefaultTableModel modelo=(DefaultTableModel) jTIngreso.getModel();
+
+    Contador ++;
+    Object[] miTabla = new Object[5];
+    miTabla[0]= Contador;
+    miTabla[1]= jTFCapturaRafaga.getText();
+    miTabla[2]= jTFCapturaQuantum.getText();
+    miTabla[3]= jTFCapturaRafaga.getText();
+    miTabla[4]= "Listo";
+    modelo.addRow(miTabla);
+    jTIngreso.setModel(modelo);
+    jTFCapturaRafaga.setText(null);
+    jTFCapturaRafaga.grabFocus();
 }
 
 public void Informe(int c){
 
   //DIEGO
+  DefaultTableModel modelo2 = (DefaultTableModel) jTFinal.getModel();
+
+    Object[] miTabla= new Object[5];
+    miTabla[0]= c+1;
+    miTabla[1]= Rafaga;
+    miTabla[2]= Quantum;
+    miTabla[3]= TiempoProceso+" Segundos";
+    miTabla[4]= "Terminado";
+    modelo2.addRow(miTabla);
+    jTFinal.setModel(modelo2);
+
+    CantidadProcesos++;
+    jLCantidadProcesos.setText(String.valueOf(CantidadProcesos+" Terminados"));
+    jLCantidadTiempo.setText(String.valueOf(TiempoProceso+" Segundos"));
 }
 
 public void Borrar(int c){ 
     
      //DIEGO
+     jTIngreso.setValueAt(0,c,0);
+    jTIngreso.setValueAt("0",c,1);
+    jTIngreso.setValueAt("0",c,2);
+    jTIngreso.setValueAt("0",c,3);
+    jTIngreso.setValueAt("******",c,4);
 }
 
    public void Barra(int rafaga, int residuo){ //Calcula porcentaje de la barra y su progreso
