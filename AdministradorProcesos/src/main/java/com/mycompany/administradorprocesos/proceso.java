@@ -503,6 +503,11 @@ public void Informe(int c){
 public void Borrar(int c){ 
     
      //DIEGO
+     jTIngreso.setValueAt(0,c,0);
+    jTIngreso.setValueAt("0",c,1);
+    jTIngreso.setValueAt("0",c,2);
+    jTIngreso.setValueAt("0",c,3);
+    jTIngreso.setValueAt("******",c,4);
 }
 
    public void Barra(int rafaga, int residuo){ //Calcula porcentaje de la barra y su progreso
