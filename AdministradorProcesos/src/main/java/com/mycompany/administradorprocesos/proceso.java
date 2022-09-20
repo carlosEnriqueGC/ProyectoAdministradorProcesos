@@ -446,7 +446,7 @@ public void Dormir(){
 try{
         Thread.sleep(700); //Dormir sistema
     }catch(InterruptedException ex){
-        Logger.getLogger(Procesar.class.getName()).log(Level.SEVERE,null,ex);
+        Logger.getLogger(proceso.class.getName()).log(Level.SEVERE,null,ex);
     }
 
 }
