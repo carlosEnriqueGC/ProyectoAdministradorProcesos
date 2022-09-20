@@ -484,6 +484,20 @@ public void Ingresar(){
 public void Informe(int c){
 
   //DIEGO
+  DefaultTableModel modelo2 = (DefaultTableModel) jTFinal.getModel();
+
+    Object[] miTabla= new Object[5];
+    miTabla[0]= c+1;
+    miTabla[1]= Rafaga;
+    miTabla[2]= Quantum;
+    miTabla[3]= TiempoProceso+" Segundos";
+    miTabla[4]= "Terminado";
+    modelo2.addRow(miTabla);
+    jTFinal.setModel(modelo2);
+
+    CantidadProcesos++;
+    jLCantidadProcesos.setText(String.valueOf(CantidadProcesos+" Terminados"));
+    jLCantidadTiempo.setText(String.valueOf(TiempoProceso+" Segundos"));
 }
 
 public void Borrar(int c){ 
