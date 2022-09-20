@@ -443,11 +443,25 @@ public class proceso extends javax.swing.JFrame {
 public void Dormir(){
    
 //DIEGO
+try{
+        Thread.sleep(700); //Dormir sistema
+    }catch(InterruptedException ex){
+        Logger.getLogger(Procesar.class.getName()).log(Level.SEVERE,null,ex);
+    }
+
 }
 
 public void Cargar(int i){ 
     
  //DIEGO
+ NProceso=(int)jTIngreso.getValueAt(i,0);
+    Rafaga=parseInt((String)(jTIngreso.getValueAt(i,1)));
+    Quantum=parseInt((String)(jTIngreso.getValueAt(i,2)));
+    ResiduoRafaga=parseInt((String)(jTIngreso.getValueAt(i,3)));
+    if(NProceso>0){
+        jLNumeroProceso.setText(String.valueOf(NProceso));
+    }
+ 
 }
 
 public void Ingresar(){ 
