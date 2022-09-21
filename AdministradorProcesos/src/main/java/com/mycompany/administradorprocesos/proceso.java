@@ -36,7 +36,7 @@ public class proceso extends javax.swing.JFrame {
         //jTFinal.setBackground(Color.red);
         jTFCapturaQuantum.grabFocus();
         
-        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -291,7 +291,7 @@ public class proceso extends javax.swing.JFrame {
                             .addComponent(jLCantidadProcesos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -508,8 +508,8 @@ public void Informe(int c){
     jTFinal.setModel(modelo2);
 
     CantidadProcesos++;
-    jLCantidadProcesos.setText(String.valueOf(CantidadProcesos+" Terminados"));
-    jLCantidadTiempo.setText(String.valueOf(TiempoProceso+" Segundos"));
+    jLCantidadProcesos1.setText(String.valueOf(CantidadProcesos+" Terminados"));
+    jLCantidadTiempo1.setText(String.valueOf(TiempoProceso+" Segundos"));
 }
 
 public void Borrar(int c){ 
