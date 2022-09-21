@@ -330,10 +330,22 @@ public class proceso extends javax.swing.JFrame {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
      
          //JOSHUA   
+ // TODO add your handling code here:
+        if((Integer.parseInt(jTFCapturaRafaga.getText()))<=100){
+            Ingresar();
+            jTFCapturaQuantum.setEditable(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Las Rafagas no pueden ser mayores de 100");
+            jTFCapturaRafaga.setText(null);
+            jTFCapturaRafaga.grabFocus();  
+        }
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIniciarActionPerformed
          //JOSHUA   
+ // TODO add your handling code here:
+        new Thread(new Hilo()).start(); //Crea un nuevo hilo
+        Iniciar();
     }//GEN-LAST:event_jBIniciarActionPerformed
 
     /**
@@ -513,16 +525,28 @@ public void Borrar(int c){
    public void Barra(int rafaga, int residuo){ //Calcula porcentaje de la barra y su progreso
        
       //JOSHUA   
+int Rafaga=rafaga;
+        int valor=100/rafaga;
+        int porcentaje=100-(valor*residuo);
+        ValorBarra=porcentaje;
+        jLPorcentajeProceso.setText(String.valueOf(ValorBarra+"%"));
 }
 
     public void Pintar(){
         //JOSHUA    
-        
+        jPBEstado.setValue(ValorBarra);
+        jPBEstado.repaint();
     }
 
     public void Iniciar(){ //Inicia la secuencia de procesos
        
-         //JOSHUA   
+         //JOSHUA  
+ jLabel2.setVisible(false);
+        jLabel1.setVisible(false);
+        jTFCapturaRafaga.setVisible(false);
+        jTFCapturaQuantum.setVisible(false);
+        jBAgregar.setVisible(false);
+        jBIniciar.setVisible(false); 
 }
         
     
