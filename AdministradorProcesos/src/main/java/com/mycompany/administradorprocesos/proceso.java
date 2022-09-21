@@ -513,16 +513,28 @@ public void Borrar(int c){
    public void Barra(int rafaga, int residuo){ //Calcula porcentaje de la barra y su progreso
        
       //JOSHUA   
+int Rafaga=rafaga;
+        int valor=100/rafaga;
+        int porcentaje=100-(valor*residuo);
+        ValorBarra=porcentaje;
+        jLPorcentajeProceso.setText(String.valueOf(ValorBarra+"%"));
 }
 
     public void Pintar(){
         //JOSHUA    
-        
+        jPBEstado.setValue(ValorBarra);
+        jPBEstado.repaint();
     }
 
     public void Iniciar(){ //Inicia la secuencia de procesos
        
-         //JOSHUA   
+         //JOSHUA  
+ jLabel2.setVisible(false);
+        jLabel1.setVisible(false);
+        jTFCapturaRafaga.setVisible(false);
+        jTFCapturaQuantum.setVisible(false);
+        jBAgregar.setVisible(false);
+        jBIniciar.setVisible(false); 
 }
         
     
