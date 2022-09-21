@@ -330,10 +330,22 @@ public class proceso extends javax.swing.JFrame {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
      
          //JOSHUA   
+ // TODO add your handling code here:
+        if((Integer.parseInt(jTFCapturaRafaga.getText()))<=100){
+            Ingresar();
+            jTFCapturaQuantum.setEditable(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Las Rafagas no pueden ser mayores de 100");
+            jTFCapturaRafaga.setText(null);
+            jTFCapturaRafaga.grabFocus();  
+        }
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIniciarActionPerformed
          //JOSHUA   
+ // TODO add your handling code here:
+        new Thread(new Hilo()).start(); //Crea un nuevo hilo
+        Iniciar();
     }//GEN-LAST:event_jBIniciarActionPerformed
 
     /**
