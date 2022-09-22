@@ -18,14 +18,84 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Administrador extends javax.swing.JFrame {
 
+     private DefaultTableModel modelo;
     
+   
+//procedimiento de alineacionde columnas
+    private void Alineacion_Columnas(){
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.RIGHT); //establece de que forma se va a alinear las columnas
+        jtabla_datos.getColumnModel().getColumn(1).setCellRenderer(Alinear);//alinea columna 1
+        jtabla_datos.getColumnModel().getColumn(2).setCellRenderer(Alinear);//alinea columna 2
+        jtabla_datos.getColumnModel().getColumn(3).setCellRenderer(Alinear);//alinea columna 3
+        jtabla_datos.getColumnModel().getColumn(4).setCellRenderer(Alinear);//alinea columna 4
+    }
     
-    
+     private void mostrar_procesos(){
+    int ICol=0,ICont=0;
+        modelo = (DefaultTableModel) jtabla_datos.getModel();
+        Object[] Fila = new  Object[5];
+        int i=0;
+        String StrAuxi = "";
+                try {
+            String line;
+            //se realiza la ejecucion de tasklist.exe para leer los procesos en ejecucion
+            Process p = Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"tasklist.exe");
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));//lectura de los datos de buffer obtenidos con tasklist
+            //Guardado en la variable Fila cada dato para cada columna
+            while ((line = input.readLine()) != null) {
+                if(i>=4){
+                    ICont=0;
+                   while(ICont<=4){
+                    String[] sep = line.split("\\s+");
+                    if(ICont!=4){
+                    Fila[ICont] = sep[ICont];
+                    }else{
+                       Fila[ICont] = sep[ICont]+" "+sep[ICont+1]; 
+                    }
+                    ICont++;
+                   }
+                //agregamos el arreglo de la cada fila a la tabla
+                modelo.addRow(Fila);
+                //Asignamos y/o aplicamos el modelo a nuestra tabla
+                jtabla_datos.setModel(modelo);
+                }
+        i++;
+            }
+            input.close();
+            Alineacion_Columnas();//llamada a la alineacion de las columnas
+            No_procesos.setText(String.valueOf(i));// se imprimen el numero de procesos en ejecucion
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+        
+    }
+     
+      // procedimiento de limpiaeza de la tabla la restablece de a los parametros inisciales
+    void LimpiarTabla(){
+     
+      //DIEGO  
+      
+    }
+     
+      //procedimiento de matar o finalzar los procesos
+    public void Matar_proceso(){
+       //DIEGO "si te da error algo llamado administrador_de_tareas" 
+       //"solo cambialo por Administrador despues de corregirlo eliminas este mensaje solo deja tu nombre"
+}
+     
     
     public Administrador() {
         initComponents();
+        getContentPane().setBackground(Color.WHITE);
+        this.setLocationRelativeTo(null);
+        No_procesos.setFocusable(false);
+        mostrar_procesos(); 
     }
 
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,13 +222,13 @@ public class Administrador extends javax.swing.JFrame {
 
     private void jIniciar_procesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciar_procesosActionPerformed
 
-       
+     //JOSHUA
 
     }//GEN-LAST:event_jIniciar_procesosActionPerformed
 
     private void jterminar_procesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jterminar_procesosActionPerformed
 
-     
+     //JOSHUA
     }//GEN-LAST:event_jterminar_procesosActionPerformed
 
     private void No_procesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No_procesosActionPerformed
