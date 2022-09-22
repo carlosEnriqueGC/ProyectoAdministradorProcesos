@@ -223,12 +223,17 @@ public class Administrador extends javax.swing.JFrame {
     private void jIniciar_procesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciar_procesosActionPerformed
 
      //JOSHUA
-
+       LimpiarTabla();//limpia la tabla antes de insertr todos los procesos
+        mostrar_procesos();//llama al procedimiento de mostrar procesos y los coloca en la tabla
+   
     }//GEN-LAST:event_jIniciar_procesosActionPerformed
 
     private void jterminar_procesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jterminar_procesosActionPerformed
 
      //JOSHUA
+       Matar_proceso();//llama al procedimiento de terminar un proceso
+        LimpiarTabla();//limpia la tabla antes de colocar los procesos despues de haber terminado uno
+        mostrar_procesos();//coloca de nuevo los procesos que quedaron sin los que se acaban de terminar
     }//GEN-LAST:event_jterminar_procesosActionPerformed
 
     private void No_procesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No_procesosActionPerformed
