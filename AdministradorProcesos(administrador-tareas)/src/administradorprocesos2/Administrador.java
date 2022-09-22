@@ -75,6 +75,22 @@ public class Administrador extends javax.swing.JFrame {
     void LimpiarTabla(){
      
       //DIEGO  
+      jtabla_datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "PID", "Tipo de sesión ", "Número de sesión", "Uso de memoria"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
       
     }
      
