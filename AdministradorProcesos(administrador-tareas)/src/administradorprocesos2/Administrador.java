@@ -75,6 +75,22 @@ public class Administrador extends javax.swing.JFrame {
     void LimpiarTabla(){
      
       //DIEGO  
+      jtabla_datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "PID", "Tipo de sesión ", "Número de sesión", "Uso de memoria"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
       
     }
      
@@ -82,6 +98,20 @@ public class Administrador extends javax.swing.JFrame {
     public void Matar_proceso(){
        //DIEGO "si te da error algo llamado administrador_de_tareas" 
        //"solo cambialo por Administrador despues de corregirlo eliminas este mensaje solo deja tu nombre"
+       modelo = (DefaultTableModel) jtabla_datos.getModel();
+        //se realiza la lectura de los datos de la columna 0(nombre) de la fila selecionada para matar el proceso
+        String StrCelda = String.valueOf(modelo.getValueAt(jtabla_datos.getSelectedRow(), 0));
+        if(StrCelda==""){ //si no hay fila selecionada da un error
+          JOptionPane.showMessageDialog(null, "ERROR, No se ha selecionado ningun proceso","Error", JOptionPane.INFORMATION_MESSAGE); 
+        }else{//de lo contrario realizara el proceso de matar el proceso
+        try {
+          Process hijo;
+          hijo = Runtime.getRuntime().exec("taskkill /F /IM "+StrCelda);//mata el proceso selecionado junto con sus hijos
+          hijo.waitFor();// finaiza los procesos hijos
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(administrador_de_tareas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }
      
     
