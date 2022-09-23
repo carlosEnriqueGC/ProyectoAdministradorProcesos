@@ -1,6 +1,6 @@
 
 
-package com.mycompany.administradorprocesos;
+package administradorroundrobin;
 
 
 import java.awt.Color;
@@ -373,6 +373,7 @@ public class proceso extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(proceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
